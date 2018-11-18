@@ -3,7 +3,6 @@
 ###Requirements
 
 **Register**:
-- Aadhaar card
 - unique username
 
 **Search page**:
