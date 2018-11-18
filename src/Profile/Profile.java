@@ -60,7 +60,7 @@ public class Profile extends javax.swing.JFrame {
         lbPhoneNum.setText("Phone Number");
 
         lbEmailID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbEmailID.setText("EmailId");
+        lbEmailID.setText("Email Id");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
