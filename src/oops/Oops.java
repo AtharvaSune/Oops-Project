@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package oops;
-
+import Login.LoginPage;
 /**
  *
  * @author Atharva
@@ -16,6 +16,7 @@ public class Oops {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new LoginPage();
     }
     
 }
