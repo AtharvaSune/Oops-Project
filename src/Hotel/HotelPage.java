@@ -132,6 +132,16 @@ public class HotelPage extends javax.swing.JFrame {
         lPrice.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
         lPrice.setText("$1500");
 
+        jButton1.setText("jButton1");
+
+        BackBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        BackBtn.setText("Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
