@@ -21,7 +21,7 @@ public class SearchPage extends javax.swing.JFrame {
         initComponents();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "root");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");
             System.out.println(rs.getMetaData());
