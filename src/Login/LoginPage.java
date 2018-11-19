@@ -58,7 +58,7 @@ public class LoginPage extends javax.swing.JFrame {
 
         jLabel1.setText("Name");
 
-        jLabel2.setText("Resedential address");
+        jLabel2.setText("Residential address");
 
         jLabel3.setText("Email ID");
 
@@ -116,11 +116,11 @@ public class LoginPage extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel6))
+                        .addContainerGap(95, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -137,7 +137,7 @@ public class LoginPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(dcDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(tfName, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))))
+                                    .addComponent(tfName))))
                         .addGap(25, 25, 25))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -154,8 +154,8 @@ public class LoginPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -269,23 +269,32 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
         // TODO add your handling code here:
+    try{
         String name=tfName.getText();
         String email=tfEmail.getText();
         String user=tfUserR.getText();
-        String pass=tfPassR.getPassword().toString();
+        String pass=tfPassR.getText();
         Date dob=new Date(dcDOB.getDate().getTime());
         String address = taAddress.getText();
+        String nul = "";
+        if(name.equals(nul) || email.equals(nul) || user.equals(nul) || pass.equals(nul) || address.equals(nul)) {
+            throw new NullPointerException();
+        }
     
-    
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "root");
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate("insert into user (name,dob,address,email,userid,pass) values ('"+name+"','"+dob+"','"+address+"','"+email+"','"+user+"','"+pass+"';");
-            JOptionPane.showMessageDialog(this,"Registered Successfully");
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate("insert into user (name,dob,address,email,userid,password) values ('"+name+"','"+dob+"','"+address+"','"+email+"','"+user+"','"+pass+"')");
+        JOptionPane.showMessageDialog(this,"Registered Successfully");
+        }
+        catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null,"Not Registered: Please fill all the required fields.");
+        }
+        catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(null,"Not Registered: Username already taken!");
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null,"Not Registered: " + e);
         }
         
     }//GEN-LAST:event_bRegisterActionPerformed
@@ -301,20 +310,19 @@ public class LoginPage extends javax.swing.JFrame {
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
         // TODO add your handling code here:
         String user=tfUserL.getText();
-        String pass=tfPassL.getPassword().toString();
+        String pass=tfPassL.getText();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "root");
-            String sql="select * from user where userid=? AND pass=?";
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
+            String sql="select * from user where userid=? AND password=?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1,user);
             pst.setString(2,pass);
             Statement stmt = con.createStatement();
             ResultSet rs=pst.executeQuery();
             if(rs.next()) {
-                SearchPage ob = new SearchPage(this);
+                SearchPage ob = new SearchPage(user);
                 this.setVisible(false);
-                ob.search(ob);
             }
             else {
                 JOptionPane.showMessageDialog(null,"Wrong username or password");

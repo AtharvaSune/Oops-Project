@@ -11,7 +11,7 @@
 - at least 3 hotel rooms
 
 **Hotel Page**:
-- details and assocciated amenities
+- details and associated amenities
 - ratings
 - no rooms -> waiting list
 
