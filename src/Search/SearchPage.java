@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 package Search;
-<<<<<<< HEAD
 import java.sql.*;
 
-=======
 import Login.LoginPage;
->>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
 /**
  *
  * @author Atharva
@@ -21,7 +18,6 @@ public class SearchPage extends javax.swing.JFrame {
      */
     public SearchPage(LoginPage ob) {
         initComponents();
-<<<<<<< HEAD
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
@@ -33,10 +29,8 @@ public class SearchPage extends javax.swing.JFrame {
         catch (Exception e) {
             System.out.println("Caught: " + e);
         }
-=======
         search(this);
         this.ob = ob;
->>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
     }
 
     /**
@@ -168,11 +162,8 @@ public class SearchPage extends javax.swing.JFrame {
 
     private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
-=======
         this.setVisible(false);
         ob.login(ob);
->>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
         
     }//GEN-LAST:event_SearchBtnActionPerformed
 

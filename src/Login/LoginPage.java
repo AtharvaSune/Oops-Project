@@ -4,12 +4,8 @@
  * and open the template in the editor.
  */
 package Login;
-<<<<<<< HEAD
 import java.sql.*;
-
-=======
 import Search.SearchPage;
->>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
 /**
  *
  * @author getha
@@ -21,7 +17,6 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
-<<<<<<< HEAD
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -32,9 +27,7 @@ public class LoginPage extends javax.swing.JFrame {
         catch (Exception e) {
             System.out.println("Caught: " + e);
         }
-=======
         login(this);
->>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
     }
 
     /**
