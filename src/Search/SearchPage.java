@@ -165,7 +165,7 @@ public class SearchPage extends javax.swing.JFrame {
         room = Integer.parseInt(rooms.getValue().toString());
         guest = Integer.parseInt(guests.getValue().toString());
         this.setVisible(false);
-        srob = new SearchResults(location,guest,room,checkin,checkout);
+        srob = new SearchResults(location,guest,room,checkin,checkout,userName,this);
         
         
     }//GEN-LAST:event_searchBtnActionPerformed
