@@ -5,7 +5,6 @@
  */
 package Search;
 import java.sql.*;
-import Search.SearchResults;
 import Login.LoginPage;
 /**
  *
@@ -13,26 +12,15 @@ import Login.LoginPage;
  */
 public class SearchPage extends javax.swing.JFrame {
     LoginPage ob;
-//    SearchResults srob;
+    SearchResults srob;
     /**
      * Creates new form SearchPage
+     * @param userName
      */
-    public SearchPage(LoginPage ob) {
+    public SearchPage(String userName) {
         initComponents();
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");
-            System.out.println(rs.getMetaData());
-            while(rs.next())
-                System.out.println(rs.getString("id") + " " + rs.getString("name") + " " + rs.getString("address") + " " + rs.getString("rooms"));
-        }
-        catch (Exception e) {
-            System.out.println("Caught: " + e);
-        }
+        this.userName = userName;
         search(this);
-        this.ob = ob;
     }
 
     /**
@@ -60,6 +48,7 @@ public class SearchPage extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText(" City :");
+        getContentPane().add(jLabel1);
 
         cityInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cityInput.addActionListener(new java.awt.event.ActionListener() {
@@ -67,18 +56,23 @@ public class SearchPage extends javax.swing.JFrame {
                 cityInputActionPerformed(evt);
             }
         });
+        getContentPane().add(cityInput);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Check in : ");
+        getContentPane().add(jLabel2);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Check Out :");
+        getContentPane().add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText(" Rooms :");
+        getContentPane().add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText(" Guests :");
+        getContentPane().add(jLabel5);
 
         searchBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         searchBtn.setText("Search");
@@ -87,6 +81,7 @@ public class SearchPage extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(searchBtn);
 
         rooms.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         rooms.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -164,18 +159,21 @@ public class SearchPage extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-        String room = rooms.getValue().toString();
-        System.out.println(room);
-        SearchResults srob = new SearchResults();
-//        this.setVisible(false);
-//        ob.login(ob);
+        location = cityInput.getText();
+        checkin = new Date(checkInDate.getDate().getTime());
+        checkout = new Date(checkOutDate.getDate().getTime());
+        room = Integer.parseInt(rooms.getValue().toString());
+        guest = Integer.parseInt(guests.getValue().toString());
+        this.setVisible(false);
+        srob = new SearchResults(location,guest,room,checkin,checkout,userName,this);
+        
         
     }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param ob1
      */
-    public void search(SearchPage ob1) {
+    public final void search(SearchPage ob1) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -200,11 +198,9 @@ public class SearchPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //ob.setVisible(false);
-                ob1.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            //ob.setVisible(false);
+            ob1.setVisible(true);
         });
     }
 
@@ -221,4 +217,11 @@ public class SearchPage extends javax.swing.JFrame {
     private javax.swing.JSpinner rooms;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
+    private String location;
+    private int room;
+    private int guest;
+    private Date checkin;
+    private Date checkout;
+    private String userName;
+    
 }

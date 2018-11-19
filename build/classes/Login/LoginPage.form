@@ -64,17 +64,35 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                       <Group type="102" attributes="0">
+=======
+                      <Group type="102" alignment="0" attributes="0">
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                           </Group>
                           <EmptySpace pref="95" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+=======
+                              <Component id="jScrollPane1" alignment="0" min="-2" pref="176" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="47" max="32767" attributes="0"/>
+                                  <Component id="jTextField1" min="-2" pref="131" max="-2" attributes="0"/>
+                              </Group>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -82,6 +100,7 @@
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                                       <Component id="bRegister" min="-2" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="tfPassR" pref="130" max="32767" attributes="0"/>
@@ -98,6 +117,16 @@
                                       <Component id="tfName" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+=======
+                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jPasswordField1" pref="130" max="32767" attributes="0"/>
+                                          <Component id="jTextField3" max="32767" attributes="0"/>
+                                          <Component id="jTextField2" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                           </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
@@ -111,6 +140,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Component id="tfName" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -126,19 +156,44 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
+                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Component id="tfUserR" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
+                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                       <Component id="tfPassR" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="bRegister" min="-2" max="-2" attributes="0"/>
+=======
+                      <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -152,7 +207,11 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+<<<<<<< HEAD
             <Property name="text" type="java.lang.String" value="Residential address"/>
+=======
+            <Property name="text" type="java.lang.String" value="Resedential address"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -175,10 +234,14 @@
             <Property name="text" type="java.lang.String" value="D.O.B."/>
           </Properties>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JTextField" name="tfName">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNameActionPerformed"/>
           </Events>
+=======
+        <Component class="javax.swing.JTextField" name="jTextField1">
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -187,7 +250,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
+<<<<<<< HEAD
             <Component class="javax.swing.JTextArea" name="taAddress">
+=======
+            <Component class="javax.swing.JTextArea" name="jTextArea1">
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -195,6 +262,7 @@
             </Component>
           </SubComponents>
         </Container>
+<<<<<<< HEAD
         <Component class="javax.swing.JTextField" name="tfEmail">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfEmailActionPerformed"/>
@@ -211,10 +279,29 @@
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bRegister">
+=======
+        <Component class="javax.swing.JTextField" name="jTextField2">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField3">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordField1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
           <Properties>
             <Property name="text" type="java.lang.String" value="Register"/>
           </Properties>
           <Events>
+<<<<<<< HEAD
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRegisterActionPerformed"/>
           </Events>
         </Component>
@@ -223,6 +310,11 @@
             <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
           </Properties>
         </Component>
+=======
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
+        </Component>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -248,9 +340,15 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                       <Component id="bLogin" min="-2" max="-2" attributes="0"/>
                       <Component id="tfUserL" min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="tfPassL" min="-2" pref="130" max="-2" attributes="0"/>
+=======
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="userLogin" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Component id="userPass" min="-2" pref="130" max="-2" attributes="0"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
@@ -261,19 +359,31 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                       <Component id="tfUserL" min="-2" max="-2" attributes="0"/>
+=======
+                      <Component id="userLogin" min="-2" max="-2" attributes="0"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="tfPassL" min="-2" max="-2" attributes="0"/>
+=======
+                          <Component id="userPass" min="-2" max="-2" attributes="0"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                       </Group>
                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+<<<<<<< HEAD
                   <Component id="bLogin" min="-2" max="-2" attributes="0"/>
+=======
+                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
                   <EmptySpace pref="76" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -290,6 +400,7 @@
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
+<<<<<<< HEAD
         <Component class="javax.swing.JTextField" name="tfUserL">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUserLActionPerformed"/>
@@ -301,11 +412,28 @@
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bLogin">
+=======
+        <Component class="javax.swing.JTextField" name="userLogin">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userLoginActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="userPass">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userPassActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton2">
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
           <Properties>
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
           <Events>
+<<<<<<< HEAD
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLoginActionPerformed"/>
+=======
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+>>>>>>> 537a6dc13a1b322d100ffb92a9ea0642e3755c16
           </Events>
         </Component>
       </SubComponents>

@@ -18,6 +18,16 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
+            /*Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");*/
+        }
+        catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Caught: " + e);
+        }
         login(this);
     }
 
