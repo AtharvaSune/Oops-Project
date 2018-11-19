@@ -24,7 +24,7 @@ public class LoginPage extends javax.swing.JFrame {
             /*Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");*/
         }
-        catch (Exception e) {
+        catch (ClassNotFoundException | SQLException e) {
             System.out.println("Caught: " + e);
         }
         login(this);
@@ -278,10 +278,8 @@ public class LoginPage extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        SearchPage ob = new SearchPage(this);
+        SearchPage ob = new SearchPage(userName);
         this.setVisible(false);
-        ob.search(ob);
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

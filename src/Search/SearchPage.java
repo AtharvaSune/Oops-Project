@@ -5,7 +5,6 @@
  */
 package Search;
 import java.sql.*;
-
 import Login.LoginPage;
 /**
  *
@@ -13,13 +12,15 @@ import Login.LoginPage;
  */
 public class SearchPage extends javax.swing.JFrame {
     LoginPage ob;
+    SearchResults srob;
     /**
      * Creates new form SearchPage
+     * @param userName
      */
-    public SearchPage(LoginPage ob) {
+    public SearchPage(String userName) {
         initComponents();
+        this.userName = userName;
         search(this);
-        this.ob = ob;
     }
 
     /**
@@ -32,16 +33,16 @@ public class SearchPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        CityInput = new javax.swing.JTextField();
+        cityInput = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        SearchBtn = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        searchBtn = new javax.swing.JButton();
+        rooms = new javax.swing.JSpinner();
+        guests = new javax.swing.JSpinner();
+        checkOutDate = new com.toedter.calendar.JDateChooser();
+        checkInDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,10 +50,10 @@ public class SearchPage extends javax.swing.JFrame {
         jLabel1.setText(" City :");
         getContentPane().add(jLabel1);
 
-        CityInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        CityInput.addActionListener(new java.awt.event.ActionListener() {
+        cityInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        cityInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CityInputActionPerformed(evt);
+                cityInputActionPerformed(evt);
             }
         });
         getContentPane().add(CityInput);
@@ -73,56 +74,106 @@ public class SearchPage extends javax.swing.JFrame {
         jLabel5.setText(" Guests :");
         getContentPane().add(jLabel5);
 
-        SearchBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        SearchBtn.setText("Search");
-        SearchBtn.addActionListener(new java.awt.event.ActionListener() {
+        searchBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBtnActionPerformed(evt);
+                searchBtnActionPerformed(evt);
             }
         });
         getContentPane().add(SearchBtn);
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
-        jSpinner1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jSpinner1);
+        rooms.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        rooms.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
-        getContentPane().add(jSpinner2);
+        guests.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
 
-        jDateChooser1.setAutoscrolls(true);
-        jDateChooser1.setDateFormatString("d MMM yyyy");
-        getContentPane().add(jDateChooser1);
-        getContentPane().add(jDateChooser2);
+        checkOutDate.setAutoscrolls(true);
+        checkOutDate.setDateFormatString("d MMM yyyy");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(299, 299, 299))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(248, 248, 248)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cityInput, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(checkInDate, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(rooms))
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(guests, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(cityInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3))
+                    .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkInDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(guests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125)
+                .addComponent(searchBtn)
+                .addContainerGap(238, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityInputActionPerformed
+    private void cityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityInputActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CityInputActionPerformed
+    }//GEN-LAST:event_cityInputActionPerformed
 
-    private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");
-            while(rs.next())
-                System.out.println(rs.getString("id") + " " + rs.getString("name") + " " + rs.getString("address") + " " + rs.getString("rooms"));
-        }
-        catch (Exception e) {
-            System.out.println("Caught: " + e);
-        }
+        location = cityInput.getText();
+        checkin = new Date(checkInDate.getDate().getTime());
+        checkout = new Date(checkOutDate.getDate().getTime());
+        room = Integer.parseInt(rooms.getValue().toString());
+        guest = Integer.parseInt(guests.getValue().toString());
         this.setVisible(false);
-        ob.login(ob);
+        srob = new SearchResults(location,guest,room,checkin,checkout);
         
-    }//GEN-LAST:event_SearchBtnActionPerformed
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param ob1
      */
-    public void search(SearchPage ob1) {
+    public final void search(SearchPage ob1) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -147,25 +198,30 @@ public class SearchPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                //ob.setVisible(false);
-                ob1.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            //ob.setVisible(false);
+            ob1.setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CityInput;
-    private javax.swing.JButton SearchBtn;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser checkInDate;
+    private com.toedter.calendar.JDateChooser checkOutDate;
+    private javax.swing.JTextField cityInput;
+    private javax.swing.JSpinner guests;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner rooms;
+    private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
+    private String location;
+    private int room;
+    private int guest;
+    private Date checkin;
+    private Date checkout;
+    private String userName;
+    
 }
