@@ -5,7 +5,7 @@
  */
 package Search;
 import java.sql.*;
-
+import Search.SearchResults;
 import Login.LoginPage;
 /**
  *
@@ -13,6 +13,7 @@ import Login.LoginPage;
  */
 public class SearchPage extends javax.swing.JFrame {
     LoginPage ob;
+//    SearchResults srob;
     /**
      * Creates new form SearchPage
      */
@@ -163,8 +164,11 @@ public class SearchPage extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
-        ob.login(ob);
+        String room = rooms.getValue().toString();
+        System.out.println(room);
+        SearchResults srob = new SearchResults();
+//        this.setVisible(false);
+//        ob.login(ob);
         
     }//GEN-LAST:event_searchBtnActionPerformed
 
