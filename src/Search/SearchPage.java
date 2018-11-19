@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Search;
+import java.sql.*;
 
 /**
  *
@@ -16,6 +17,17 @@ public class SearchPage extends javax.swing.JFrame {
      */
     public SearchPage() {
         initComponents();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");
+            while(rs.next())
+                System.out.println(rs.getString("id") + " " + rs.getString("name") + " " + rs.getString("address") + " " + rs.getString("rooms"));
+        }
+        catch (Exception e) {
+            System.out.println("Caught: " + e);
+        }
     }
 
     /**
@@ -65,6 +77,11 @@ public class SearchPage extends javax.swing.JFrame {
 
         SearchBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         SearchBtn.setText("Search");
+        SearchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBtnActionPerformed(evt);
+            }
+        });
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         jSpinner1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -138,6 +155,11 @@ public class SearchPage extends javax.swing.JFrame {
     private void CityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CityInputActionPerformed
+
+    private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SearchBtnActionPerformed
 
     /**
      * @param args the command line arguments
