@@ -5,10 +5,7 @@
  */
 package Login;
 import java.sql.*;
-<<<<<<< HEAD
-=======
 import javax.swing.JOptionPane;
->>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
 import Search.SearchPage;
 /**
  *
@@ -313,12 +310,6 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void bLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLoginActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
-        
-        SearchPage ob = new SearchPage(userName);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
-=======
         String user=tfUserL.getText();
         String pass=tfPassL.getPassword().toString();
         try {
@@ -350,7 +341,6 @@ public class LoginPage extends javax.swing.JFrame {
     private void tfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNameActionPerformed
->>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
 
     /**
      * @param args the command line arguments

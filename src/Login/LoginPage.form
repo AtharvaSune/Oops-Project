@@ -75,14 +75,6 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-<<<<<<< HEAD
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="47" max="32767" attributes="0"/>
-                                  <Component id="jTextField1" min="-2" pref="131" max="-2" attributes="0"/>
-                              </Group>
-=======
->>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
