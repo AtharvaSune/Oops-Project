@@ -32,20 +32,14 @@
                           <Component id="jLabel2" pref="104" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jDateChooser2" pref="143" max="32767" attributes="0"/>
-                          <Component id="jSpinner1" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jSpinner1" min="-2" pref="143" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel3" pref="103" max="32767" attributes="0"/>
                           <Component id="jLabel5" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jDateChooser1" pref="143" max="32767" attributes="0"/>
-                          <Component id="jSpinner2" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jSpinner2" min="-2" pref="143" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
@@ -72,13 +66,9 @@
                   <Component id="CityInput" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jDateChooser2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -152,10 +142,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Search"/>
       </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinner1">
       <Properties>
