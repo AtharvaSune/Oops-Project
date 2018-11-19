@@ -30,8 +30,12 @@ public final class SearchResults extends javax.swing.JFrame {
         this.userName = userName;
         this.back = sp;
         initComponents();
+<<<<<<< HEAD
         setComponent();
         searchresult(this);
+=======
+        searchResult(this);
+>>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
     }
 
     /**
@@ -356,6 +360,7 @@ public final class SearchResults extends javax.swing.JFrame {
 
     /**
      */
+<<<<<<< HEAD
     private void setComponent(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -400,6 +405,9 @@ public final class SearchResults extends javax.swing.JFrame {
         }
     }
     private void searchresult(SearchResults ob1) {
+=======
+    public void searchResult(SearchResults ob1) {
+>>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -424,8 +432,15 @@ public final class SearchResults extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+<<<<<<< HEAD
         java.awt.EventQueue.invokeLater(() -> {
             ob1.setVisible(true);
+=======
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                ob1.setVisible(true);
+            }
+>>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
         });
     }
 

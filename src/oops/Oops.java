@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package oops;
+<<<<<<< HEAD
+=======
+import java.sql.*;
+>>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
 import Login.LoginPage;
 
 /**
@@ -18,7 +22,11 @@ import Login.LoginPage;
      */
     public static void main(String[] args) {
         // TODO code application logic here
+<<<<<<< HEAD
         LoginPage loginPage = new LoginPage();
+=======
+        new LoginPage();
+>>>>>>> bb03ec3fd7279d42826cc63c9db502d0173af9d6
 //      try {
 //            Class.forName("com.mysql.jdbc.Driver");
 //            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
