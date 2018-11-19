@@ -134,11 +134,11 @@ public class HotelPage extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
-        BackBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        BackBtn.setText("Back");
-        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackBtnActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -226,7 +226,7 @@ public class HotelPage extends javax.swing.JFrame {
 
     private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
         // TODO add your handling code here:
-        BookingPage bp = new BookingPage(username,lName.getText(),guest,rooms,checkin,checkout,total,this);
+        BookingPage bp = new BookingPage(username,lName.getText(),guest,rooms,checkin,checkout,Integer.parseInt(total),this);
         this.setVisible(false);
     }//GEN-LAST:event_bookBtnActionPerformed
 

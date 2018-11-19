@@ -228,7 +228,7 @@
         <Property name="text" type="java.lang.String" value="$1500"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="text" type="java.lang.String" value="jButton1"/>
       </Properties>

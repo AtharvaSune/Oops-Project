@@ -56,7 +56,7 @@ public class SearchPage extends javax.swing.JFrame {
                 cityInputActionPerformed(evt);
             }
         });
-        getContentPane().add(CityInput);
+        getContentPane().add(cityInput);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Check in : ");
@@ -81,7 +81,7 @@ public class SearchPage extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(SearchBtn);
+        getContentPane().add(searchBtn);
 
         rooms.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         rooms.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
