@@ -100,12 +100,20 @@ public class HotelPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+<<<<<<< HEAD
                 .addContainerGap(83, Short.MAX_VALUE))
+=======
+                .addContainerGap(140, Short.MAX_VALUE))
+>>>>>>> a21a94b7a76d96ec7fdc8236e826427163e308fe
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(320, 320, 320)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                     .addContainerGap(83, Short.MAX_VALUE)))
+=======
+                    .addContainerGap(140, Short.MAX_VALUE)))
+>>>>>>> a21a94b7a76d96ec7fdc8236e826427163e308fe
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,9 +135,15 @@ public class HotelPage extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)))
+<<<<<<< HEAD
                 .addContainerGap(267, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGap(0, 516, Short.MAX_VALUE))
+=======
+                .addContainerGap(208, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 457, Short.MAX_VALUE))
+>>>>>>> a21a94b7a76d96ec7fdc8236e826427163e308fe
         );
 
         pack();
