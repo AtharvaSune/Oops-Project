@@ -4,19 +4,24 @@
  * and open the template in the editor.
  */
 package Search;
+<<<<<<< HEAD
 import java.sql.*;
 
+=======
+import Login.LoginPage;
+>>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
 /**
  *
  * @author Atharva
  */
 public class SearchPage extends javax.swing.JFrame {
-
+    LoginPage ob;
     /**
      * Creates new form SearchPage
      */
-    public SearchPage() {
+    public SearchPage(LoginPage ob) {
         initComponents();
+<<<<<<< HEAD
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
@@ -28,6 +33,10 @@ public class SearchPage extends javax.swing.JFrame {
         catch (Exception e) {
             System.out.println("Caught: " + e);
         }
+=======
+        search(this);
+        this.ob = ob;
+>>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
     }
 
     /**
@@ -88,6 +97,7 @@ public class SearchPage extends javax.swing.JFrame {
 
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, 30, 1));
 
+        jDateChooser1.setAutoscrolls(true);
         jDateChooser1.setDateFormatString("d MMM yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,7 +115,7 @@ public class SearchPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                             .addComponent(jSpinner1))
-                        .addGap(89, 89, 89)
+                        .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,13 +168,18 @@ public class SearchPage extends javax.swing.JFrame {
 
     private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
+=======
+        this.setVisible(false);
+        ob.login(ob);
+>>>>>>> c1216b6bde8f501ab334862143b32ad279284cfa
         
     }//GEN-LAST:event_SearchBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void search(SearchPage ob1) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -191,7 +206,8 @@ public class SearchPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchPage().setVisible(true);
+                //ob.setVisible(false);
+                ob1.setVisible(true);
             }
         });
     }
