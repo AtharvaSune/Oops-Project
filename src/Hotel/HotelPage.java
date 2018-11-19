@@ -5,6 +5,8 @@
  */
 package Hotel;
 import java.sql.*;
+import Search.SearchResults;
+import Booking.BookingPage;
 
 /**
  *
@@ -15,20 +17,44 @@ public class HotelPage extends javax.swing.JFrame {
     /**
      * Creates new form HotelPage
      */
-    public HotelPage() {
+    private int hotelid,guest,rooms;
+    private String username,total;
+    private Date checkin,checkout;
+    private SearchResults sr;
+    public HotelPage(String username,int hotelid,int guest,int rooms,Date checkin,Date checkout,String total,SearchResults sr) {
         initComponents();
-        
+        this.hotelid=hotelid;
+        this.username=username;
+        this.guest=guest;
+        this.rooms=rooms;
+        this.checkin=checkin;
+        this.checkout=checkout;
+        this.total=total;
+        this.sr=sr;
+        setComponents();
+        hotel(this);
+    }
+    private void setComponents()
+    {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
-            /*Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");*/
-        }   
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM hotels where hotelid = "+hotelid);
+            lName.setText(rs.getString("hotel"));
+            lAddress.setText(rs.getString("address"));
+            lAmenities.setText(rs.getString("amenities"));
+            lRating.setText(rs.getString("rating"));
+            lImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Hotel/exterior.jpg")));
+            //lRooms.setText(rs.getString("hotel"));
+            lPrice.setText(rs.getString("price"));
+            lTotalPrice.setText(total);   
+        }
         catch (Exception e) {
             System.out.println("Caught: " + e);
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,30 +64,29 @@ public class HotelPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lImg = new javax.swing.JLabel();
+        lName = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        lAmenities = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lAddress = new javax.swing.JLabel();
+        lRating = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lRooms = new javax.swing.JLabel();
         bookBtn = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lTotalPrice = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        lPrice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Hotel/exterior.jpg"))); // NOI18N
+        lImg.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Hotel/exterior.jpg"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Itc Kartikeya");
+        lName.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        lName.setText("Itc Kartikeya");
 
         jButton1.setText("jButton1");
 
@@ -73,22 +98,22 @@ public class HotelPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
-        jLabel4.setText("WiFi, Toilet, Bed, Tubelights");
+        lAmenities.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
+        lAmenities.setText("WiFi, Toilet, Bed, Tubelights");
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
         jLabel5.setText("Available Rooms:");
 
-        jLabel3.setText("Address");
+        lAddress.setText("Address");
 
-        jLabel6.setFont(new java.awt.Font("Noto Sans", 0, 19)); // NOI18N
-        jLabel6.setText("4.8 Rating by 1 user(s)");
+        lRating.setFont(new java.awt.Font("Noto Sans", 0, 19)); // NOI18N
+        lRating.setText("4.8 Rating by 1 user(s)");
 
         jLabel8.setFont(new java.awt.Font("Noto Sans", 0, 20)); // NOI18N
         jLabel8.setText("Amenities:");
 
-        jLabel7.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
-        jLabel7.setText("50");
+        lRooms.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
+        lRooms.setText("50");
 
         bookBtn.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         bookBtn.setText("Book Now");
@@ -98,17 +123,14 @@ public class HotelPage extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
-        jLabel9.setText("Total Price:");
-
-        jLabel10.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
-        jLabel10.setText("3 * $1500 = $4500");
+        lTotalPrice.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
+        lTotalPrice.setText("3 * $1500 = $4500");
 
         jLabel11.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
         jLabel11.setText("Price / night:");
 
-        jLabel12.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
-        jLabel12.setText("$1500");
+        lPrice.setFont(new java.awt.Font("Noto Sans", 0, 16)); // NOI18N
+        lPrice.setText("$1500");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -120,31 +142,28 @@ public class HotelPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(283, 283, 283)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addComponent(lRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(405, 405, 405)))
+                        .addComponent(lPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(387, 387, 387)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(lTotalPrice))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lImg, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lAmenities, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                            .addComponent(lName, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lRating, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,28 +180,27 @@ public class HotelPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(lAddress)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
+                        .addComponent(lRating)
                         .addGap(40, 40, 40)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lAmenities))
+                    .addComponent(lImg, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bookBtn))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
@@ -192,17 +210,20 @@ public class HotelPage extends javax.swing.JFrame {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        
+        this.setVisible(false);
+        sr.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
         // TODO add your handling code here:
+        BookingPage bp = new BookingPage(username,lName.getText(),guest,rooms,checkin,checkout,total,this);
+        this.setVisible(false);
     }//GEN-LAST:event_bookBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+        private void hotel(HotelPage hp) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -229,7 +250,7 @@ public class HotelPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HotelPage().setVisible(true);
+                hp.setVisible(true);
             }
         });
     }
@@ -238,18 +259,17 @@ public class HotelPage extends javax.swing.JFrame {
     private javax.swing.JButton backBtn;
     private javax.swing.JButton bookBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lAddress;
+    private javax.swing.JLabel lAmenities;
+    private javax.swing.JLabel lImg;
+    private javax.swing.JLabel lName;
+    private javax.swing.JLabel lPrice;
+    private javax.swing.JLabel lRating;
+    private javax.swing.JLabel lRooms;
+    private javax.swing.JLabel lTotalPrice;
     // End of variables declaration//GEN-END:variables
 }

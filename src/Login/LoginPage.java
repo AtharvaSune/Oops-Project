@@ -314,7 +314,7 @@ public class LoginPage extends javax.swing.JFrame {
             if(rs.next()) {
                 SearchPage ob = new SearchPage(this);
                 this.setVisible(false);
-                ob.search(ob);
+                ob.search(user);
             }
             else {
                 JOptionPane.showMessageDialog(null,"Wrong username or password");
