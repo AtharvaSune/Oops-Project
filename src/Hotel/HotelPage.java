@@ -49,7 +49,7 @@ public class HotelPage extends javax.swing.JFrame {
             lImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Hotel/exterior.jpg")));
             //lRooms.setText(rs.getString("hotel"));
             lPrice.setText(rs.getString("price"));
-            lTotalPrice.setText(total);   
+            lTotalPrice.setText(total);
         }
         catch (Exception e) {
             System.out.println("Caught: " + e);
@@ -227,7 +227,7 @@ public class HotelPage extends javax.swing.JFrame {
 
     private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
         // TODO add your handling code here:
-        BookingPage bp = new BookingPage(username,lName.getText(),guest,rooms,checkin,checkout,Integer.parseInt(total),this);
+        BookingPage bp = new BookingPage(username,lName.getText(),guest,rooms,checkin,checkout,Integer.parseInt(total),Integer.parseInt(lPrice.getText()),this);
         this.setVisible(false);
     }//GEN-LAST:event_bookBtnActionPerformed
 

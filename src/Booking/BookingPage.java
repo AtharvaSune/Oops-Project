@@ -10,17 +10,30 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import Hotel.HotelPage;
+import Search.*.;
+import javax.swing.JOptionPane;
 /**
  *
  * @author getha
  */
 public class BookingPage extends javax.swing.JFrame {
 
+    private String name;
+    private String phone;
+    private String email;
+    private String userName;
+    private Date checkin;
+    private Date checkout;
+    private String HotelName;
+    private int rooms;
+    private int guests;
+    private int totalPrice,price;
+    private HotelPage back;
+
     /**
      * Creates new form BookingPage
      */
-    public BookingPage(String username,String HotelName,int guests,int rooms,Date checkin,Date checkout,int TotalPrice,HotelPage hp) {
+    public BookingPage(String username,String HotelName,int guests,int rooms,Date checkin,Date checkout,int TotalPrice,int price,HotelPage hp) {
         this.userName = username;
         this.checkin = checkin;
         this.checkout = checkout;
@@ -29,6 +42,7 @@ public class BookingPage extends javax.swing.JFrame {
         this.guests = guests;
         this.totalPrice = TotalPrice;
         this.back = hp;
+        this.price=price;
         initComponents();
         setComponents();
         booking(this);
@@ -49,7 +63,7 @@ public class BookingPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         Aadhar = new javax.swing.JRadioButton();
         PAN = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
+        lIdProof = new javax.swing.JLabel();
         IdProof = new javax.swing.JTextField();
         Confirm = new javax.swing.JButton();
         Name = new javax.swing.JTextField();
@@ -58,13 +72,15 @@ public class BookingPage extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         LbHotelName = new javax.swing.JLabel();
-        checkInDate = new com.toedter.calendar.JDateChooser();
-        checkOutDate = new com.toedter.calendar.JDateChooser();
+        dcCheckIn = new com.toedter.calendar.JDateChooser();
+        dcCheckOut = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         sRooms = new javax.swing.JSpinner();
         sGuests = new javax.swing.JSpinner();
-        jLabel10 = new javax.swing.JLabel();
+        lTotalPrice = new javax.swing.JLabel();
+        Cancel = new javax.swing.JButton();
+        Save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,9 +105,15 @@ public class BookingPage extends javax.swing.JFrame {
         buttonGroup1.add(PAN);
         PAN.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         PAN.setText("PAN No.");
+        PAN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PANActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Enter Adhaar/PAN");
+        lIdProof.setText("Enter Adhaar/PAN");
 
+        IdProof.setEditable(false);
         IdProof.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IdProofActionPerformed(evt);
@@ -139,7 +161,26 @@ public class BookingPage extends javax.swing.JFrame {
 
         jLabel9.setText("Guests");
 
-        jLabel10.setText("Total Price");
+        sRooms.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        sRooms.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        sGuests.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+
+        lTotalPrice.setText("Total Price");
+
+        Cancel.setText("Cancel Booking");
+        Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelActionPerformed(evt);
+            }
+        });
+
+        Save.setText("Save Changes");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,84 +188,92 @@ public class BookingPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addGap(98, 98, 98)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Aadhar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(PAN, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jLabel5)
-                                        .addGap(21, 21, 21)
-                                        .addComponent(IdProof, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(Name)
-                                            .addComponent(checkInDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(checkOutDate, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
-                                        .addGap(54, 54, 54)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addGap(59, 59, 59)
-                                                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel9)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addComponent(jLabel6)
-                                                    .addGap(45, 45, 45)
-                                                    .addComponent(sRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(104, 104, 104)
-                                                    .addComponent(sGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addGap(0, 53, Short.MAX_VALUE))))
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85)
+                        .addComponent(LbHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(LbHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(98, 98, 98)
+                                        .addComponent(Aadhar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dcCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dcCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(98, 98, 98)
+                                                .addComponent(PAN, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(72, 72, 72)
+                                                .addComponent(Save)))
+                                        .addGap(64, 64, 64)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lTotalPrice)
+                                            .addComponent(lIdProof)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
+                                .addGap(105, 105, 105)
                                 .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(286, 286, 286)
-                .addComponent(jLabel10)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(sGuests, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel9))
+                                .addGap(71, 71, 71)
+                                .addComponent(sRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(64, 64, 64)
+                                .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Cancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(IdProof, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(backBtn)
-                .addGap(18, 18, 18)
-                .addComponent(LbHotelName)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backBtn)
+                    .addComponent(LbHotelName))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(checkInDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkOutDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(21, 21, 21))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dcCheckIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dcCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
+                        .addGap(50, 50, 50)
                         .addComponent(sRooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(sGuests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -241,29 +290,32 @@ public class BookingPage extends javax.swing.JFrame {
                             .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PAN))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Aadhar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(IdProof, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(14, 14, 14)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(59, 59, 59)
-                .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Aadhar, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PAN)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lIdProof)
+                        .addComponent(IdProof, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lTotalPrice)
+                    .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(89, 89, 89))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AadharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AadharActionPerformed
-        // TODO add your handling code here:    
+        // TODO add your handling code here:
+        IdProof.setEditable(true);
+        lIdProof.setText("Enter Adhaar : ");
     }//GEN-LAST:event_AadharActionPerformed
 
     private void IdProofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdProofActionPerformed
@@ -272,29 +324,24 @@ public class BookingPage extends javax.swing.JFrame {
     
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         // TODO add your handling code here:
-        this.checkin = new Date(checkInDate.getDate().getTime());
-        this.checkout =new Date(checkOutDate.getDate().getTime());
-        this.rooms = Integer.parseInt(sRooms.getValue().toString());
-        this.guests = Integer.parseInt(sGuests.getValue().toString());
-        //if()
-        int days = (int)( (checkout.getTime() - checkin.getTime()) / (1000 * 60 * 60 * 24));
-        this.totalPrice = rooms*days*price;
+        
         if(Aadhar.isEnabled()){
             if(IdProof.getText().length()!=12){
                 IdProof.setBackground(Color.red);
+                JOptionPane.showMessageDialog(null,"Please input valid aadhaar number");
                 return;
             }
         }else{
             if(IdProof.getText().length()!=10){
                 IdProof.setBackground(Color.red);
+                JOptionPane.showMessageDialog(null,"Please input valid PAN number");
                 return;
             }
         }
-        this.userName = Name.getText();
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO booking (userid, Hotel, room, guest, indate, outdate, aadhaar, status) values ('"+userName+"','"+HotelName+"',"+rooms+","+guests+",'"+checkin+"','"+checkout+"',"+Integer.parseInt(IdProof.getText())+",'booked')");
+            stmt.executeUpdate("INSERT INTO booking (userid, Hotel, room, guest, indate, outdate, aadhaar) values ('"+userName+"','"+HotelName+"',"+rooms+","+guests+",'"+checkin+"','"+checkout+"',"+Integer.parseInt(IdProof.getText())+")");
         }catch (Exception e) {
             System.out.println("error "+e);
         }
@@ -313,6 +360,31 @@ public class BookingPage extends javax.swing.JFrame {
         this.setVisible(false);
         back.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SearchPage(userName).setVisible(true);
+    }//GEN-LAST:event_CancelActionPerformed
+
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        // TODO add your handling code here:
+        this.userName = Name.getText();
+        this.checkin = new Date(dcCheckIn.getDate().getTime());
+        this.checkout =new Date(dcCheckOut.getDate().getTime());
+        this.rooms = Integer.parseInt(sRooms.getValue().toString());
+        this.guests = Integer.parseInt(sGuests.getValue().toString());
+        if()
+        int days = (int)( (checkout.getTime() - checkin.getTime()) / (1000 * 60 * 60 * 24));
+        this.totalPrice = rooms*days*price;
+        lTotalPrice.setText(totalPrice+"");
+    }//GEN-LAST:event_SaveActionPerformed
+
+    private void PANActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PANActionPerformed
+        // TODO add your handling code here:
+        IdProof.setEditable(true);
+        lIdProof.setText("Enter PAN : ");
+    }//GEN-LAST:event_PANActionPerformed
     
     private void setComponents(){
         try{
@@ -321,8 +393,14 @@ public class BookingPage extends javax.swing.JFrame {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE userid='"+this.userName+"'");
             rs.next();
-            email = rs.getString("email");
-            Email.setText(email);
+            Email.setText(rs.getString("email"));
+            Name.setText(rs.getString("name"));
+            sRooms.setValue(Integer.valueOf(rooms));
+            sGuests.setValue(Integer.valueOf(guests));
+            dcCheckIn.setDate(checkin);
+            dcCheckOut.setDate(checkout);
+            lTotalPrice.setText("Total Amount : $"+totalPrice);
+            
         }catch(Exception e){
             System.out.println(e);
         }
@@ -363,37 +441,28 @@ public class BookingPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Aadhar;
+    private javax.swing.JButton Cancel;
     private javax.swing.JButton Confirm;
     private javax.swing.JTextField Email;
     private javax.swing.JTextField IdProof;
     private javax.swing.JLabel LbHotelName;
     private javax.swing.JTextField Name;
     private javax.swing.JRadioButton PAN;
+    private javax.swing.JButton Save;
     private javax.swing.JButton backBtn;
     private javax.swing.ButtonGroup buttonGroup1;
-    private com.toedter.calendar.JDateChooser checkInDate;
-    private com.toedter.calendar.JDateChooser checkOutDate;
+    private com.toedter.calendar.JDateChooser dcCheckIn;
+    private com.toedter.calendar.JDateChooser dcCheckOut;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lIdProof;
+    private javax.swing.JLabel lTotalPrice;
     private javax.swing.JSpinner sGuests;
     private javax.swing.JSpinner sRooms;
     // End of variables declaration//GEN-END:variables
-    private String name;
-    private String phone;
-    private String email;
-    private String userName;
-    private Date checkin;
-    private Date checkout;
-    private String HotelName;
-    private int rooms;
-    private int guests;
-    private int totalPrice;
-    private HotelPage back;
-}
+    }
