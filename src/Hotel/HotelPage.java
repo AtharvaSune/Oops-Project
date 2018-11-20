@@ -227,7 +227,7 @@ public class HotelPage extends javax.swing.JFrame {
 
     private void bookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookBtnActionPerformed
         // TODO add your handling code here:
-        BookingPage bp = new BookingPage(username,lName.getText(),guest,rooms,checkin,checkout,Integer.parseInt(total),Integer.parseInt(lPrice.getText()),this);
+        BookingPage bp = new BookingPage(username,hotelid,lName.getText(),guest,rooms,checkin,checkout,Integer.parseInt(total),Integer.parseInt(lPrice.getText()),this);
         this.setVisible(false);
     }//GEN-LAST:event_bookBtnActionPerformed
 

@@ -10,7 +10,9 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import Search.*.;
+import java.util.*;
+import Search.*;
+import Hotel.HotelPage;
 import javax.swing.JOptionPane;
 /**
  *
@@ -27,17 +29,18 @@ public class BookingPage extends javax.swing.JFrame {
     private String HotelName;
     private int rooms;
     private int guests;
-    private int totalPrice,price;
+    private int totalPrice,price,HotelId;
     private HotelPage back;
 
     /**
      * Creates new form BookingPage
      */
-    public BookingPage(String username,String HotelName,int guests,int rooms,Date checkin,Date checkout,int TotalPrice,int price,HotelPage hp) {
+    public BookingPage(String username,int HotelId,String HotelName,int guests,int rooms,Date checkin,Date checkout,int TotalPrice,int price,HotelPage hp) {
         this.userName = username;
         this.checkin = checkin;
         this.checkout = checkout;
         this.HotelName = HotelName;
+        this.HotelId= HotelId;
         this.rooms = rooms;
         this.guests = guests;
         this.totalPrice = TotalPrice;
@@ -320,6 +323,7 @@ public class BookingPage extends javax.swing.JFrame {
 
     private void IdProofActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdProofActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_IdProofActionPerformed
     
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
@@ -342,6 +346,15 @@ public class BookingPage extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO booking (userid, Hotel, room, guest, indate, outdate, aadhaar) values ('"+userName+"','"+HotelName+"',"+rooms+","+guests+",'"+checkin+"','"+checkout+"',"+Integer.parseInt(IdProof.getText())+")");
+            Calendar c = Calendar.getInstance();
+            c.setTime(checkin);
+            Date next_day= new java.sql.Date(c.getTimeInMillis());
+            while(!(next_day.toString().equals(checkout.toString())))
+            {
+                stmt.executeUpdate("UPDATE list_waiting SET "+next_day.toString()+"="+rooms+" where hotelid = "+HotelId);
+                c.add(Calendar.DATE, 1);
+                next_day= new java.sql.Date(c.getTimeInMillis());
+            }
         }catch (Exception e) {
             System.out.println("error "+e);
         }
@@ -374,7 +387,6 @@ public class BookingPage extends javax.swing.JFrame {
         this.checkout =new Date(dcCheckOut.getDate().getTime());
         this.rooms = Integer.parseInt(sRooms.getValue().toString());
         this.guests = Integer.parseInt(sGuests.getValue().toString());
-        if()
         int days = (int)( (checkout.getTime() - checkin.getTime()) / (1000 * 60 * 60 * 24));
         this.totalPrice = rooms*days*price;
         lTotalPrice.setText(totalPrice+"");
