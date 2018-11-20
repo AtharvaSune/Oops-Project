@@ -359,7 +359,7 @@ public final class SearchResults extends javax.swing.JFrame {
     private void setComponent(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");
             int i=0;
@@ -371,6 +371,7 @@ public final class SearchResults extends javax.swing.JFrame {
                             PricePerNight1.setText("Pricer: "+rs.getString("Price"));
                             TotalPrice1.setText("20000");
                             Proceed.setActionCommand(rs.getString("hotelid"));
+                            System.out.println(Proceed.getActionCommand());
                         }
                         i++;
                         break;

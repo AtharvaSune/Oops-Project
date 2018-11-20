@@ -37,12 +37,13 @@ CREATE TABLE user (
 -- Table `mydb`.`hotels`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS hotels (
-  `hotelid` VARCHAR(45) NOT NULL,
-  `hotel` VARCHAR(70) NULL,
-  `price` INT NULL,
-  `fac` VARCHAR(150) NULL,
+  `hotelid` INT NOT NULL AUTO_INCREMENT,
+  `hotel` VARCHAR(70) NOT NULL,
+  `address` VARCHAR(150) NOT NULL,
+  `price` INT NOT NULL,
+  `fac` VARCHAR(150) NOT NULL,
   `rating` FLOAT NULL,
-  `location` VARCHAR(45) NULL,
+  `city` VARCHAR(45) NOT NULL,
   `r1cin` DATE NULL,
   `r1out` DATE NULL,
   `r2cin` DATE NULL,
@@ -76,12 +77,12 @@ CREATE TABLE IF NOT EXISTS hotels (
 CREATE TABLE IF NOT EXISTS `mydb`.`booking` (
   `userid` VARCHAR(45) NULL,
   `location` VARCHAR(45) NULL,
-  `Hotel` VARCHAR(70) NULL,
+  `hotel` VARCHAR(70) NULL,
   `room` INT NULL,
   `guest` INT NULL,
   `indate` DATE NULL,
   `outdate` DATE NULL,
-  `aadhaar` INT(12),
+  `idproof` INT(12),
   `status` VARCHAR(45) NULL,
   `bookid` INT(99) NOT NULL,
   PRIMARY KEY (`bookid`)

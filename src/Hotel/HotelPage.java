@@ -38,9 +38,10 @@ public class HotelPage extends javax.swing.JFrame {
     {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM hotels where hotelid = "+hotelid);
+            rs.next();
             lName.setText(rs.getString("hotel"));
             lAddress.setText(rs.getString("address"));
             lAmenities.setText(rs.getString("amenities"));

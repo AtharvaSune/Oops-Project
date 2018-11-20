@@ -21,7 +21,7 @@ public class LoginPage extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Hoteldb", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
             /*Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM hotels");*/
         }
