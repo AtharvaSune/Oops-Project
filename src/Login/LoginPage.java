@@ -269,7 +269,7 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void bRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegisterActionPerformed
         // TODO add your handling code here:
-    try{
+   // try{
         String name=tfName.getText();
         String email=tfEmail.getText();
         String user=tfUserR.getText();
@@ -280,8 +280,13 @@ public class LoginPage extends javax.swing.JFrame {
         if(name.equals(nul) || email.equals(nul) || user.equals(nul) || pass.equals(nul) || address.equals(nul)) {
             throw new NullPointerException();
         }
+        if(dob.toString().compareTo("2006-01-01")>0 || dob.toString().compareTo("1900-01-01") < 0){
+            JOptionPane.showMessageDialog(null," D.O.B shoulb be in between 1901 and 2006 ");
+            return;
+        }
+        JOptionPane.showMessageDialog(null,"success");
     
-        Class.forName("com.mysql.jdbc.Driver");
+      /*  Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
         Statement stmt = con.createStatement();
         stmt.executeUpdate("insert into user (name,dob,address,email,userid,password) values ('"+name+"','"+dob+"','"+address+"','"+email+"','"+user+"','"+pass+"')");
@@ -296,7 +301,7 @@ public class LoginPage extends javax.swing.JFrame {
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Not Registered: " + e);
         }
-        
+        */
     }//GEN-LAST:event_bRegisterActionPerformed
 
     private void tfUserLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserLActionPerformed
@@ -311,7 +316,7 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         String user=tfUserL.getText();
         String pass=tfPassL.getText();
-        try {
+       /* try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
             String sql="select * from user where userid=? AND password=?";
@@ -320,20 +325,19 @@ public class LoginPage extends javax.swing.JFrame {
             pst.setString(2,pass);
             Statement stmt = con.createStatement();
             ResultSet rs=pst.executeQuery();
-            if(rs.next()) {
+            if(rs.next()) */{
                 SearchPage ob = new SearchPage(user);
                 this.setVisible(false);
             }
-            else {
+           /* else {
                 JOptionPane.showMessageDialog(null,"Wrong username or password");
                 tfUserL.setText("");
                 tfPassL.setText("");
             }
         }
-            
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
-        }
+        }*/
     }//GEN-LAST:event_bLoginActionPerformed
 
     private void tfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNameActionPerformed

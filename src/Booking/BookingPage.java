@@ -345,7 +345,7 @@ public class BookingPage extends javax.swing.JFrame {
         try{
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
             Statement stmt = con.createStatement();
-            stmt.executeUpdate("INSERT INTO booking (userid, Hotel, room, guest, indate, outdate, aadhaar) values ('"+userName+"','"+HotelName+"',"+rooms+","+guests+",'"+checkin+"','"+checkout+"',"+Integer.parseInt(IdProof.getText())+")");
+            stmt.executeUpdate("INSERT INTO booking (userid, Hotel, hotelid, room, guest, indate, outdate, aadhaar) values ('"+userName+"','"+HotelName+"',"+HotelId+"',"+rooms+","+guests+",'"+checkin+"','"+checkout+"',"+Integer.parseInt(IdProof.getText())+")");
             Calendar c = Calendar.getInstance();
             c.setTime(checkin);
             Date next_day= new java.sql.Date(c.getTimeInMillis());

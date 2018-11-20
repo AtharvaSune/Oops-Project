@@ -34,7 +34,6 @@ public class SearchPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        cityInput = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -44,36 +43,24 @@ public class SearchPage extends javax.swing.JFrame {
         guests = new javax.swing.JSpinner();
         checkOutDate = new com.toedter.calendar.JDateChooser();
         checkInDate = new com.toedter.calendar.JDateChooser();
+        cityInput = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText(" City :");
-        getContentPane().add(jLabel1);
-
-        cityInput.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        cityInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cityInputActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cityInput);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Check in : ");
-        getContentPane().add(jLabel2);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Check Out :");
-        getContentPane().add(jLabel3);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText(" Rooms :");
-        getContentPane().add(jLabel4);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText(" Guests :");
-        getContentPane().add(jLabel5);
 
         searchBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         searchBtn.setText("Search");
@@ -82,7 +69,6 @@ public class SearchPage extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(searchBtn);
 
         rooms.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         rooms.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -91,6 +77,13 @@ public class SearchPage extends javax.swing.JFrame {
 
         checkOutDate.setAutoscrolls(true);
         checkOutDate.setDateFormatString("d MMM yyyy");
+
+        cityInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hyderabad", "Mumbai", "Delhi" }));
+        cityInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityInputActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +99,7 @@ public class SearchPage extends javax.swing.JFrame {
                         .addGap(248, 248, 248)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cityInput, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cityInput, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -129,11 +122,11 @@ public class SearchPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cityInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81)
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
@@ -154,27 +147,31 @@ public class SearchPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cityInputActionPerformed
-
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-        location = cityInput.getText();
+    try {
+        location = String.valueOf(cityInput.getSelectedItem());
         checkin = new Date(checkInDate.getDate().getTime());
         checkout = new Date(checkOutDate.getDate().getTime());
-        if(checkout.compareTo(checkin)<=0 || checkin.compareTo(Date.valueOf(java.time.LocalDate.now())) <= 0){
+        if(checkout.compareTo(checkin) < 0 || checkin.compareTo(Date.valueOf(java.time.LocalDate.now())) < 0 || checkout.toString().equals(checkin.toString()) || checkin.toString().equals(Date.valueOf(java.time.LocalDate.now()).toString())){
             JOptionPane.showMessageDialog(null,"Enter Dates Correctly ");
             return;
         }
-//        System.out.println(checkin  +"  " + checkout);
         room = Integer.parseInt(rooms.getValue().toString());
         guest = Integer.parseInt(guests.getValue().toString());
         this.setVisible(false);
         srob = new SearchResults(location,guest,room,checkin,checkout,userName,this);
-//        
+    }
+    catch(Exception e)
+    {
+        JOptionPane.showMessageDialog(null,"Enter All fields ");
+    }
         
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void cityInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityInputActionPerformed
 
     /**
      * @param ob1
@@ -213,7 +210,7 @@ public class SearchPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser checkInDate;
     private com.toedter.calendar.JDateChooser checkOutDate;
-    private javax.swing.JTextField cityInput;
+    private javax.swing.JComboBox<String> cityInput;
     private javax.swing.JSpinner guests;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
