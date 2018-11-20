@@ -6,6 +6,7 @@
 package Search;
 import java.sql.*;
 import Login.LoginPage;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Atharva
@@ -162,11 +163,16 @@ public class SearchPage extends javax.swing.JFrame {
         location = cityInput.getText();
         checkin = new Date(checkInDate.getDate().getTime());
         checkout = new Date(checkOutDate.getDate().getTime());
+        if(checkout.compareTo(checkin)<=0 || checkin.compareTo(Date.valueOf(java.time.LocalDate.now())) <= 0){
+            JOptionPane.showMessageDialog(null,"Enter Dates Correctly ");
+            return;
+        }
+//        System.out.println(checkin  +"  " + checkout);
         room = Integer.parseInt(rooms.getValue().toString());
         guest = Integer.parseInt(guests.getValue().toString());
         this.setVisible(false);
         srob = new SearchResults(location,guest,room,checkin,checkout,userName,this);
-        
+//        
         
     }//GEN-LAST:event_searchBtnActionPerformed
 

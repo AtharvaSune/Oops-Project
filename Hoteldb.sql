@@ -44,28 +44,6 @@ CREATE TABLE IF NOT EXISTS hotels (
   `fac` VARCHAR(150) NOT NULL,
   `rating` FLOAT NULL,
   `city` VARCHAR(45) NOT NULL,
-  `r1cin` DATE NULL,
-  `r1out` DATE NULL,
-  `r2cin` DATE NULL,
-  `r2cout` DATE NULL,
-  `r3cin` DATE NULL,
-  `r3out` DATE NULL,
-  `r4cin` DATE NULL,
-  `r4cout` DATE NULL,
-  `r5cin` DATE NULL,
-  `r5cout` DATE NULL,
-  `r6cin` DATE NULL,
-  `r6cout` DATE NULL,
-  `r7cin` DATE NULL,
-  `r7cout` DATE NULL,
-  `r8cin` DATE NULL,
-  `r8cout` DATE NULL,
-  `r9cin` DATE NULL,
-  `r9cout` DATE NULL,
-  `r10cin` DATE NULL,
-  `r10cout` DATE NULL,
-  `r11in` DATE NULL,
-  `r11out` DATE NULL,
   PRIMARY KEY (`hotelid`)
 );
 -- ENGINE = InnoDB;
@@ -82,9 +60,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`booking` (
   `guest` INT NULL,
   `indate` DATE NULL,
   `outdate` DATE NULL,
-  `idproof` INT(12),
+  `idproof` VARCHAR(12),
   `status` VARCHAR(45) NULL,
-  `bookid` INT(99) NOT NULL,
+  `bookid` INT(99) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`bookid`)
 );
 -- ENGINE = InnoDB;
