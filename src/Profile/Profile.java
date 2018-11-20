@@ -17,42 +17,84 @@ public class Profile extends javax.swing.JFrame {
      */
     public Profile() {
         initComponents();
-//        
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
-//            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE userid='" + user + "';");
-//            profiler (rs, stmt, user);
-//        }
-//        catch (Exception e) {
-//            System.out.println("Caught: " + e);
-//        }
-        profiler();
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
+            Statement stmt = con.createStatement();
+            String user = "hatim";
+            ResultSet rs = stmt.executeQuery("SELECT * FROM user WHERE userid='" + user + "';");
+            profiler (rs, stmt, user);
+        }
+        catch (Exception e) {
+            System.out.println("Caught: " + e);
+        }
+//        profiler();
     }
     
-    private void profiler () {
+    private void profiler (ResultSet rs, Statement stmt, String user) throws SQLException {
         
-//            rs.next();
-//            String name = rs.getString("name");
-//            String addr = rs.getString("address");
-//            String dob = rs.getString("dob");
-//            String email = rs.getString("email");
-//            nameLabel.setText(name);
-//            addressLabel.setText(addr);
-//            dobLabel.setText(dob);
-//            emailLabel.setText(email);
-//            
-//            rs = stmt.executeQuery("SELECT * FROM booking WHERE userid='" + user + "';");
+            rs.next();
+            String name = rs.getString("name");
+            String addr = rs.getString("address");
+            String dob = rs.getString("dob");
+            String email = rs.getString("email");
+            String usname = "@"+user;
+            nameLabel.setText(name);
+            usernameLabel.setText(usname);
+            addressLabel.setText(addr);
+            dobLabel.setText(dob);
+            emailLabel.setText(email);
             
-//            while(rs.next()) 
-//            {
-                javax.swing.JLabel newLabel = new javax.swing.JLabel("Bla");
-                JPanel2.add(newLabel);
-                newLabel.setBounds(0, 375, 40, 40);
+            rs = stmt.executeQuery("SELECT * FROM booking WHERE userid='" + user + "';");
+            
+            int x = 14, y = 300;
+            if(rs.next() == false){
+                String msg = "No upcoming bookings!";
+                javax.swing.JLabel newLabel = new javax.swing.JLabel(msg);
+                newLabel.setFont(new java.awt.Font("Noto Sans", 1, 12));
+                this.add(newLabel);
+                newLabel.setBounds(50, 300, 150, 30);
                 newLabel.validate();
                 newLabel.repaint();
-//            }
+                return;
+            }
+            rs.previous();
+            while(rs.next())
+            {
+                javax.swing.JLabel bookLabel = new javax.swing.JLabel(rs.getString("bookid"));
+                bookLabel.setFont(new java.awt.Font("Noto Sans", 1, 12));
+                this.add(bookLabel);
+                bookLabel.setBounds(x, y, 60, 40);
+                bookLabel.validate();
+                bookLabel.repaint();
+                x += 45;
+                
+                javax.swing.JLabel hotelLabel = new javax.swing.JLabel(rs.getString("hotel"));
+                hotelLabel.setFont(new java.awt.Font("Noto Sans", 1, 12));
+                this.add(hotelLabel);
+                hotelLabel.setBounds(x, y, 170, 40);
+                hotelLabel.validate();
+                hotelLabel.repaint();
+                x += 175;
+                
+                javax.swing.JLabel inLabel = new javax.swing.JLabel(rs.getString("indate"));
+                inLabel.setFont(new java.awt.Font("Noto Sans", 1, 12));
+                this.add(inLabel);
+                inLabel.setBounds(x, y, 90, 40);
+                inLabel.validate();
+                inLabel.repaint();
+                x += 75;
+                javax.swing.JLabel outLabel = new javax.swing.JLabel(rs.getString("outdate"));
+                outLabel.setFont(new java.awt.Font("Noto Sans", 1, 12));
+                this.add(outLabel);
+                outLabel.setBounds(x, y, 90, 40);
+                outLabel.validate();
+                outLabel.repaint();
+                
+                x = 14;
+                y += 40;
+            }
     }
 
     /**
@@ -70,7 +112,9 @@ public class Profile extends javax.swing.JFrame {
         dobLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
         addressLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,10 +126,10 @@ public class Profile extends javax.swing.JFrame {
             }
         });
 
-        jPanel2.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         nameLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        nameLabel.setText("User Name");
+        nameLabel.setText("Name");
 
         dobLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         dobLabel.setText("dob");
@@ -95,6 +139,9 @@ public class Profile extends javax.swing.JFrame {
 
         addressLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addressLabel.setText("address");
+
+        usernameLabel.setFont(new java.awt.Font("Noto Sans", 2, 16)); // NOI18N
+        usernameLabel.setText("@username");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -108,27 +155,35 @@ public class Profile extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(usernameLabel))
                             .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dobLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(595, Short.MAX_VALUE))))
+                        .addContainerGap(539, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameLabel)
+                    .addComponent(usernameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(addressLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dobLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailLabel)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
         jLabel5.setText("Upcoming Bookings");
+
+        jLabel1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jLabel1.setText("About Me");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,7 +196,8 @@ public class Profile extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -150,11 +206,13 @@ public class Profile extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BackBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(373, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
         pack();
@@ -205,8 +263,10 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel addressLabel;
     private javax.swing.JLabel dobLabel;
     private javax.swing.JLabel emailLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }
